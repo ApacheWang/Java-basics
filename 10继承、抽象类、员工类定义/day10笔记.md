@@ -469,27 +469,27 @@
 	        
 
 ### 14抽象类特点
-  A:抽象类的特点
-    a:抽象类和抽象方法都需要被abstract修饰。抽象方法一定要定义在抽象类中。
-    b:抽象类不可以直接创建对象，原因：调用抽象方法没有意义。
-    c:只有覆盖了抽象类中所有的抽象方法后，其子类才可以创建对象。否则该子类还是一个抽象类。
-    之所以继承抽象类，更多的是在思想，是面对共性类型操作会更简单。
-      abstract class A{
-      	public abstract void func();
-      	public abstract void func2();
-      }
-      class A2 extends A{//A2把A中的两个抽象方法都重写掉了
-      	                 //A2类不再是抽象类
-      	 public void func(){}
-      	 public void func2(){}
-      }
-
-      abstract class A3 extends A{//含有抽象方法的类一定是抽象类
-      	 public void func(){
-
-      	 }
-      	 //public abstract void func2();//func2相当于被继承下来
-      }
+	  A:抽象类的特点
+	    a:抽象类和抽象方法都需要被abstract修饰。抽象方法一定要定义在抽象类中。
+	    b:抽象类不可以直接创建对象，原因：调用抽象方法没有意义。
+	    c:只有覆盖了抽象类中所有的抽象方法后，其子类才可以创建对象。否则该子类还是一个抽象类。
+	    之所以继承抽象类，更多的是在思想，是面对共性类型操作会更简单。
+	      abstract class A{
+	      	public abstract void func();
+	      	public abstract void func2();
+	      }
+	      class A2 extends A{//A2把A中的两个抽象方法都重写掉了
+	      	                 //A2类不再是抽象类
+	      	 public void func(){}
+	      	 public void func2(){}
+	      }
+	
+	      abstract class A3 extends A{//含有抽象方法的类一定是抽象类
+	      	 public void func(){
+	
+	      	 }
+	      	 //public abstract void func2();//func2相当于被继承下来
+	      }
 
 ### 15抽象类的设计思想 4:40
     A:抽象类的设计思想
