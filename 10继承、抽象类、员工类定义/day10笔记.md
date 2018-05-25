@@ -507,183 +507,183 @@
       work(){}       work(){}
 
 ### 16抽象类的细节
-   A:抽象类的细节
-     a:抽象类一定是个父类？	
-        是的，因为不断抽取而来的。
-     b:抽象类中是否可以不定义抽象方法?
-       是可以的，那这个抽象类的存在到底有什么意义呢？不让该类创建对象,方法可以直接让子类去使用
-       (适配器设计模式)
-        /*
-		 *   抽象类,可以没有抽象方法,可以定义带有方法体的方法
-		 *   让子类继承后,可以直接使用
-		 */
-		public  abstract class Animal {
-		     public void sleep(){
-		    	 System.out.println("动物睡觉");
-		     }
-		    
-		}
-		public class Cat extends Animal{
-
-        }     
-        
-        public class Test {
-			public static void main(String[] args) {
-				//Cat c = new Cat();
-				new Cat().sleep();//不让该类创建对象,方法可以直接让子类去使用
+	   A:抽象类的细节
+	     a:抽象类一定是个父类？	
+	        是的，因为不断抽取而来的。
+	     b:抽象类中是否可以不定义抽象方法?
+	       是可以的，那这个抽象类的存在到底有什么意义呢？不让该类创建对象,方法可以直接让子类去使用
+	       (适配器设计模式)
+	        /*
+			 *   抽象类,可以没有抽象方法,可以定义带有方法体的方法
+			 *   让子类继承后,可以直接使用
+			 */
+			public  abstract class Animal {
+			     public void sleep(){
+			    	 System.out.println("动物睡觉");
+			     }
+			    
 			}
-        }
-     c:抽象关键字abstract不可以和哪些关键字共存？	
-	  1:private：私有的方法子类是无法继承到的，也不存在覆盖，
-                 而abstract和private一起使用修饰方法，abstract既要子类去实现这个方法,
-                 而private修饰子类根本无法得到父类这个方法。互相矛盾。 
-        
-        /*
-		 *   抽象类,可以没有抽象方法,可以定义带有方法体的方法
-		 *   让子类继承后,可以直接使用
-		 */
-		public  abstract class Animal {
+			public class Cat extends Animal{
+	
+	        }     
+	        
+	        public class Test {
+				public static void main(String[] args) {
+					//Cat c = new Cat();
+					new Cat().sleep();//不让该类创建对象,方法可以直接让子类去使用
+				}
+	        }
+	     c:抽象关键字abstract不可以和哪些关键字共存？	
+		  1:private：私有的方法子类是无法继承到的，也不存在覆盖，
+	                 而abstract和private一起使用修饰方法，abstract既要子类去实现这个方法,
+	                 而private修饰子类根本无法得到父类这个方法。互相矛盾。 
+	        
+	        /*
+			 *   抽象类,可以没有抽象方法,可以定义带有方法体的方法
+			 *   让子类继承后,可以直接使用
+			 */
+			public  abstract class Animal {
+			 
+			     // private abstract void show();
+			     //抽象方法,需要子类重写, 如果父类方法是私有的,子类继承不了,也就没有了重写
+			}
 		 
-		     // private abstract void show();
-		     //抽象方法,需要子类重写, 如果父类方法是私有的,子类继承不了,也就没有了重写
-		}
-	 
-
-	 
-     2:final，暂时不关注，后面学
-	 3:static，暂时不关注，后面学
-
+	
+		 
+	     2:final，暂时不关注，后面学
+		 3:static，暂时不关注，后面学
+	
 
 
 ### 17员工案例分析
-A:员工案例分析:
-  a:需求描述:
-		某IT公司有多名员工，按照员工负责的工作不同，进行了部门的划分（研发部员工、维护部员工）。
-		  研发部根据所需研发的内容不同，又分为JavaEE工程师、Android工程师；
-		  维护部根据所需维护的内容不同，又分为网络维护工程师、硬件维护工程师。
-
-		公司的每名员工都有他们自己的员工编号、姓名，并要做它们所负责的工作。
-			工作内容
-			JavaEE工程师：员工号为xxx的 xxx员工，正在研发淘宝网站
-			Android工程师：员工号为xxx的 xxx员工，正在研发淘宝手机客户端软件
-			网络维护工程师：员工号为xxx的 xxx员工，正在检查网络是否畅通
-			硬件维护工程师：员工号为xxx的 xxx员工，正在修复打印机
-  b:继承体系:
-                        员工
-                         |
-       --------------------------------------------
-       |                                          |
-     研发部员工                                 维护部员工
-       |                                          |
-   -------------                              -----------
-   |            |                             |         |
-JavaEE工程师   Android工程师         网络维护工程师    硬件维护工程师
- 
-  c:详细描述:
-	根据员工信息的描述，确定每个员工都有员工编号、姓名、要进行工作。
-     则，把这些共同的属性与功能抽取到父类中（员工类），
-     关于工作的内容由具体的工程师来进行指定。
-	工作内容
-		JavaEE工程师：员工号为xxx的 xxx员工，正在研发淘宝网站
-		Android工程师：员工号为xxx的 xxx员工，正在研发淘宝手机客户端软件
-		网络维护工程师：员工号为xxx的 xxx员工，正在检查网络是否畅通
-		硬件维护工程师：员工号为xxx的 xxx员工，正在修复打印机
-	创建JavaEE工程师对象，完成工作方法的调用
+	A:员工案例分析:
+	  a:需求描述:
+			某IT公司有多名员工，按照员工负责的工作不同，进行了部门的划分（研发部员工、维护部员工）。
+			  研发部根据所需研发的内容不同，又分为JavaEE工程师、Android工程师；
+			  维护部根据所需维护的内容不同，又分为网络维护工程师、硬件维护工程师。
+	
+			公司的每名员工都有他们自己的员工编号、姓名，并要做它们所负责的工作。
+				工作内容
+				JavaEE工程师：员工号为xxx的 xxx员工，正在研发淘宝网站
+				Android工程师：员工号为xxx的 xxx员工，正在研发淘宝手机客户端软件
+				网络维护工程师：员工号为xxx的 xxx员工，正在检查网络是否畅通
+				硬件维护工程师：员工号为xxx的 xxx员工，正在修复打印机
+	  b:继承体系:
+	                        员工
+	                         |
+	       --------------------------------------------
+	       |                                          |
+	     研发部员工                                 维护部员工
+	       |                                          |
+	   -------------                              -----------
+	   |            |                             |         |
+	JavaEE工程师   Android工程师         网络维护工程师    硬件维护工程师
+	 
+	  c:详细描述:
+		根据员工信息的描述，确定每个员工都有员工编号、姓名、要进行工作。
+	     则，把这些共同的属性与功能抽取到父类中（员工类），
+	     关于工作的内容由具体的工程师来进行指定。
+		工作内容
+			JavaEE工程师：员工号为xxx的 xxx员工，正在研发淘宝网站
+			Android工程师：员工号为xxx的 xxx员工，正在研发淘宝手机客户端软件
+			网络维护工程师：员工号为xxx的 xxx员工，正在检查网络是否畅通
+			硬件维护工程师：员工号为xxx的 xxx员工，正在修复打印机
+		创建JavaEE工程师对象，完成工作方法的调用
 
 
 ### 18员工案例Employee类的编写
-   A:员工案例Employee类的编写:按照分析的继承体系来逐个实现
-		 /*
-		 *  定义员工类
-		 *    内容,都是所有子类的共性抽取
-		 *      属性: 姓名,工号
-		 *      方法: 工作
-		 */
-	   public abstract class Employee {
-			private String id;// 员工编号
-			private String name; // 员工姓名
-
-			public String getId() {
-				return id;
-			}
-			public void setId(String id) {
-				this.id = id;
-			}
-			public String getName() {
-				return name;
-			}
-			public void setName(String name) {
-				this.name = name;
-			}
-			
-			//工作方法（抽象方法）
-			public abstract void work(); 
-	 }
+	   A:员工案例Employee类的编写:按照分析的继承体系来逐个实现
+			 /*
+			 *  定义员工类
+			 *    内容,都是所有子类的共性抽取
+			 *      属性: 姓名,工号
+			 *      方法: 工作
+			 */
+		   public abstract class Employee {
+				private String id;// 员工编号
+				private String name; // 员工姓名
+	
+				public String getId() {
+					return id;
+				}
+				public void setId(String id) {
+					this.id = id;
+				}
+				public String getName() {
+					return name;
+				}
+				public void setName(String name) {
+					this.name = name;
+				}
+				
+				//工作方法（抽象方法）
+				public abstract void work(); 
+		 }
 
 
 ### 19员工案例的子类的编写
-   B:员工案例的子类的编写:
-     /*
-	 *  定义研发员工类
-	 *    属于员工中的一种, 继承员工类 
-	 *    抽象类Develop 给自己的员工定义自己有的属性
-	 */
-	public abstract class Develop extends Employee{
-
-	}
-
-	/*
-	 *  描述JavaEE开发工程师类
-	 *    工号,姓名 工作方法
-	 *  其他的员工,也具备这些共性,抽取到父类中,自己就不需要定义了
-	 *  是研发部员工的一种,继承研发部类
-	 */
-	public class JavaEE extends Develop{
-		//重写他父类的父类的抽象方法
-		public void work(){
-			//调用父类的get方法,获取name,id值
-			System.out.println("JavaEE的工程师开发淘宝"+ super.getName()+".."+super.getId());
+	   B:员工案例的子类的编写:
+	     /*
+		 *  定义研发员工类
+		 *    属于员工中的一种, 继承员工类 
+		 *    抽象类Develop 给自己的员工定义自己有的属性
+		 */
+		public abstract class Develop extends Employee{
+	
 		}
-	}
-	/*
-	*定义Android工程师 继承 研发部员工类，重写工作方法
-	*/
-    public class Android extends Developer {
-	  @Override
-	   public void work() {
-		System.out.println("员工号为 " + getId() + " 的 " + getName() + " 员工，正在研发淘宝手机客户端软件");
-	  }
-    }
-  
-
-    /*
-	 *   定义维护员工类,属于员工中的一种
-	 *   继承员工类
-	 *   抽象类Maintainer 给自己的员工定义自己有的属性
-	 */
-	public abstract class Maintainer extends Employee{
-
-	}
-    
-    /*
-	 *  描述的是网络维护工程师
-	 *  属于维护部的员工,继承维护部类
-	 */
-	public class Network extends Maintainer{
-		public void work(){
-			System.out.println("网络工程师在检查网络是否畅通"+super.getName()+"..."+super.getId());
+	
+		/*
+		 *  描述JavaEE开发工程师类
+		 *    工号,姓名 工作方法
+		 *  其他的员工,也具备这些共性,抽取到父类中,自己就不需要定义了
+		 *  是研发部员工的一种,继承研发部类
+		 */
+		public class JavaEE extends Develop{
+			//重写他父类的父类的抽象方法
+			public void work(){
+				//调用父类的get方法,获取name,id值
+				System.out.println("JavaEE的工程师开发淘宝"+ super.getName()+".."+super.getId());
+			}
 		}
-	}
-	
-    /*
-     *定义Hardware硬件维护工程师 继承 维护部员工类，重写工作方法
-     */
-	public class Hardware extends Maintainer {
-		@Override
-		public void work() {
-			System.out.println("员工号为 " + getId() + " 的 " + getName() + " 员工，正在修复打印机");
+		/*
+		*定义Android工程师 继承 研发部员工类，重写工作方法
+		*/
+	    public class Android extends Developer {
+		  @Override
+		   public void work() {
+			System.out.println("员工号为 " + getId() + " 的 " + getName() + " 员工，正在研发淘宝手机客户端软件");
+		  }
+	    }
+	  
+	
+	    /*
+		 *   定义维护员工类,属于员工中的一种
+		 *   继承员工类
+		 *   抽象类Maintainer 给自己的员工定义自己有的属性
+		 */
+		public abstract class Maintainer extends Employee{
+	
 		}
-	}
+	    
+	    /*
+		 *  描述的是网络维护工程师
+		 *  属于维护部的员工,继承维护部类
+		 */
+		public class Network extends Maintainer{
+			public void work(){
+				System.out.println("网络工程师在检查网络是否畅通"+super.getName()+"..."+super.getId());
+			}
+		}
+		
+	    /*
+	     *定义Hardware硬件维护工程师 继承 维护部员工类，重写工作方法
+	     */
+		public class Hardware extends Maintainer {
+			@Override
+			public void work() {
+				System.out.println("员工号为 " + getId() + " 的 " + getName() + " 员工，正在修复打印机");
+			}
+		}
 
 ###  20总结
 * 把今天的知识点总结一遍。
