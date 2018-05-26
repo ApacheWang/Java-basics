@@ -124,7 +124,7 @@
       
 
 ### 07自动装箱和自动拆箱练习题 
-   *A:自动装箱与自动拆箱:
+    *A:自动装箱与自动拆箱:
 	    Integer i = new Integer(1);
 	 	Integer j = new Integer(1);
 	 	System.out.println(i==j);// false 对象地址
