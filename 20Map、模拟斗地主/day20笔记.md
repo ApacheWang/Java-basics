@@ -135,7 +135,7 @@
     
 
 ### 04Map集合Entry对象
-   A:Map集合Entry对象
+    A:Map集合Entry对象
      interface Map{
      	interface Entry{//Entry是Map的一个内部接口
      		           //由Map的子类的内部类实现
