@@ -254,7 +254,7 @@
 		* a: 创建对象的数量比较
 			* String s3 = "abc";
 				* 在内存中只有一个对象。这个对象在字符串常量池中
-			* String s4 = new String("abc");
+			* String s4 = new String("abc");
 				* 在内存中有两个对象。一个new的对象在堆中，一个字符串本身对象，在字符串常量池中
 		* b: 案例代码
 			public class StringDemo2 {
